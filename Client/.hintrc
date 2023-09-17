@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "flex-direction"
+        ]
+      }
+    ],
+    "no-inline-styles": "off",
+    "typescript-config/consistent-casing": "off",
+    "typescript-config/strict": "off",
+    "compat-api/html": [
+      "default",
+      {
+        "ignore": [
+          "form[novalidate]"
+        ]
+      }
+    ],
+    "button-type": "off"
+  }
+}

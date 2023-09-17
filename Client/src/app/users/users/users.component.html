@@ -1,0 +1,113 @@
+
+<mat-dialog-content [formGroup]="form"> 
+  <mat-tab-group mat-align-tabs="start"   style="height:290px;scroll-behavior: auto" >
+    <mat-tab label="Contact Information"  >  
+      <br>
+      <div style="height:200px;scroll-behavior: auto;">
+       
+        <table style="text-size-adjust:15px;">  
+          <tr>  
+              <td>  
+                <mat-form-field >
+                  <input matInput placeholder="First Name"               
+                         formControlName="FirstName"  value="{{data.FirstName}}"   >
+                 </mat-form-field>
+              </td>
+              <td>  
+                <mat-form-field>
+                  <input matInput placeholder="Last Name"               
+                         formControlName="LastName"  value="{{data.LastName}}"   >
+              </mat-form-field>
+              </td>
+              <td>  
+                <mat-form-field>
+                  <input matInput placeholder="Email Address"               
+                         formControlName="EmailAddress"  value="{{data.EmailAddress}}"   >
+              </mat-form-field>
+              </td>
+          </tr>
+          <tr>  
+            <td>  
+              <mat-form-field>
+                <input matInput placeholder="Id Number"               
+                       formControlName="IdNumber"  value="{{data.IdNumber}}"   >
+              </mat-form-field>
+            </td>
+            <td>  
+            
+              <mat-radio-group  [(value)]="selected">
+                <mat-radio-button value="Diploma">Diploma</mat-radio-button>         
+                <mat-radio-button value="BachelorsDegree">BachelorsDegree </mat-radio-button>        
+               
+              </mat-radio-group>            
+             
+            </td> 
+                      
+          </tr>
+        </table>
+       
+       </div> 
+    </mat-tab>
+    <mat-tab label="Institution">           
+        <br>      
+        <div style="height:220px;scroll-behavior: auto;"> 
+          <br>
+          <mat-radio-group style="font-size:15px;" [(value)]="selected">
+            <mat-radio-button value="1">Damelin</mat-radio-button>
+           
+            <mat-radio-button value="2">CTI</mat-radio-button>
+            
+            <mat-radio-button value="3">UCT</mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <br>    
+          <table>  
+          
+            <tr>
+              <td>  
+                <mat-form-field>
+                  <input matInput placeholder="Qualification"               
+                         formControlName="Qualification"  value="{{data.Qualification}}"   >
+                </mat-form-field>
+              </td>
+              <td>  
+                <mat-form-field>
+                  <input matInput placeholder="Qualification Type"               
+                         formControlName="QualificationType"  value="{{data.QualificationType}}"   >
+                </mat-form-field>
+              </td>               
+            </tr>
+            <tr>
+              <td> 
+                <mat-form-field>
+                  <input matInput placeholder="Date Registered"               
+                         formControlName="DateRegistered"  value="{{data.DateRegistered}}"   >
+                </mat-form-field>
+              </td>
+              <td> 
+                <mat-form-field>
+                  <input matInput placeholder="Graduation Date"               
+                         formControlName="GraduationDate"  value="{{data.GraduationDate}}"   >
+                </mat-form-field>
+              </td>
+              <td> 
+                <mat-form-field>
+                  <input matInput placeholder="Average To Date"               
+                         formControlName="AverageToDate"  value="{{data.AverageToDate}}"   >
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>         
+         </div>       
+    </mat-tab>
+  </mat-tab-group>
+  
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button color="primary" (click)="save()" >
+     <mat-icon>save</mat-icon> Save
+ </button>
+ <button mat-button color="primary" (click)="closeDialog()">
+     <mat-icon>cancel</mat-icon> Cancel
+ </button>
+ </mat-dialog-actions>

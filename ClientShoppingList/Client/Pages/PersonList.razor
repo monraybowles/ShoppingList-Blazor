@@ -1,0 +1,51 @@
+﻿@page "/personlist"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using ClientShoppingList.Shared
+
+@inject HttpClient _httpClient
+
+<h1>Product Detail</h1>
+<div>
+    <a href="/addperson"> Create New Product</a>
+    @if (personList != null)
+    {
+        <table class="table-bordered">
+            <thead>
+                <tr>
+                    <th width = "30%">Product Name</th>
+                    <th width = "20%">Description</th>
+                    <th width = "20%">Price</th>
+                     <th width = "20%">Image</th>
+                    <th width = "30%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in personList)
+                {
+                    <tr>
+                        <td>
+                            @p.ProductName
+                        </td>
+                    <td>@p.Description</td>
+                    <td>@p.Price</td>
+                    <td><img src="@p.Img" /></td>
+                    <td>
+                        <a href="/editperson/@p.Id">Edit</a> |
+                        <a href="/deleteperson/@p.Id">Delete</a>
+                    </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+@code {
+    List<ProductsViewModel> personList = new List<ProductsViewModel>();
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await _httpClient.GetAsync("api/products");
+        response.EnsureSuccessStatusCode();
+        personList = await response.Content.ReadFromJsonAsync<List<ProductsViewModel>>();
+    }
+}
