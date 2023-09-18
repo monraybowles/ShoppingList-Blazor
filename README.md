@@ -4,6 +4,8 @@ Web API - Swagger documentation
 ![WhatsApp Image 2023-09-15 at 14 25 46](https://github.com/monraybowles/ShoppingList-Razor/assets/20695653/6e265268-d082-4fd5-b957-109c10bbe8f3)
 
 Google Sign - OAuth2 Authentication
+![Screenshot 2023-09-18 143218-google-reg](https://github.com/monraybowles/ShoppingList-Razor/assets/20695653/09342faa-5d9f-4774-babd-1dcc4b95121c)
+
 ![WhatsApp Image 2023-09-15 at 14 27 33](https://github.com/monraybowles/ShoppingList-Razor/assets/20695653/316936b9-a2b2-4aaa-9f6b-053f458351ac)
 
 CRUD Operations 
