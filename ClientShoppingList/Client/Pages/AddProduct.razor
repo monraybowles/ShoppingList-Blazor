@@ -1,0 +1,74 @@
+﻿@page "/addproduct"
+@using ClientShoppingList.Shared
+
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JsRuntime
+
+<h2>Add Product</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ProductName"> ProductName *</label>
+            <input form="ProductName" class="form-control" @bind="@products.ProductName" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="Description"> Description *</label>
+            <input form="Description" class="form-control" @bind="@products.Description" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="Price"> Price *</label>
+            <input form="Price" class="form-control" @bind="@products.Price" />
+        </div>
+    </div>
+    <div class="col-md-6">
+         <div class="form-group">
+            <label for="Img"> Image *</label>
+            <input form="Img" class="form-control" @bind="@products.Img" />
+        </div>
+       @* <div class="form-group">
+           <label for="Upload Image"> Upload Image *</label>
+            <InputFile  class="form-control" />     
+        </div>*@
+   </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <input type="button" class="btn btn-primary" @onclick="@Save" value="Save" />
+            <input type="button" class="btn" @onclick="@Cancel" value="Cancel" />
+        </div>
+    </div>
+</div>
+@code {
+    ProductsViewModel products = new ProductsViewModel();
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+    protected async Task Save()
+    {
+
+
+        var response = await Http.PostAsJsonAsync("api/Products/", @products);
+        ProductsViewModel productResponse = await response.Content.ReadFromJsonAsync<ProductsViewModel>();
+        if (productResponse?.Id > 0)
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Saved Successfully!");
+            NavigationManager.NavigateTo("personlist");
+        }
+
+    }
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("productlist");
+    }
+
+                
+
+
+}

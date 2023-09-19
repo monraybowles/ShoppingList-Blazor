@@ -23,8 +23,7 @@ namespace ClientShoppingList.Shared
         [Display(Name = "Price")]
         public decimal Price { get; set; }
 
-        [Required]
-        [Display(Name = "Img")]
+      
         public string Img { get; set; }
     }   
 }

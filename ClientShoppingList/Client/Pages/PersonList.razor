@@ -1,14 +1,14 @@
-﻿@page "/personlist"
+﻿@page "/productlist"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using ClientShoppingList.Shared
-@attribute [Authorize]
+
 @inject HttpClient _httpClient
 
 <h1>Product Detail</h1>
 <div>
-    <a href="/addperson"> Create New Product</a>
-    @if (personList != null)
+    <a href="/addproduct"> Create New Product</a>
+    @if (productList != null)
     {
         <table class="table-bordered">
             <thead>
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var p in personList)
+                @foreach (var p in productList)
                 {
                     <tr>
                         <td>
@@ -29,10 +29,10 @@
                         </td>
                     <td>@p.Description</td>
                     <td>@p.Price</td>
-                    <td><img src="@p.Img" /></td>
+                    <td><img src="@p.ProductName" /></td>
                     <td>
-                        <a href="/editperson/@p.Id">Edit</a> |
-                        <a href="/deleteperson/@p.Id">Delete</a>
+                        <a href="/editproduct/@p.Id">Edit</a> |
+                        <a href="/deleteproduct/@p.Id">Delete</a>
                     </td>
                     </tr>
                 }
@@ -41,11 +41,11 @@
     }
 </div>
 @code {
-    List<ProductsViewModel> personList = new List<ProductsViewModel>();
+    List<ProductsViewModel> productList = new List<ProductsViewModel>();
     protected override async Task OnInitializedAsync()
     {
         var response = await _httpClient.GetAsync("api/products");
         response.EnsureSuccessStatusCode();
-        personList = await response.Content.ReadFromJsonAsync<List<ProductsViewModel>>();
+        productList = await response.Content.ReadFromJsonAsync<List<ProductsViewModel>>();
     }
 }
