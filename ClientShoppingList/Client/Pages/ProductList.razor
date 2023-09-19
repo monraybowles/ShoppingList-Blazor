@@ -16,7 +16,7 @@
                     <th width = "30%">Product Name</th>
                     <th width = "20%">Description</th>
                     <th width = "20%">Price</th>
-                     <th width = "20%">Image</th>
+                    
                     <th width = "30%">Action</th>
                 </tr>
             </thead>
@@ -29,7 +29,8 @@
                         </td>
                     <td>@p.Description</td>
                     <td>@p.Price</td>
-                    <td><img src="@p.ProductName" /></td>
+                 
+
                     <td>
                         <a href="/editproduct/@p.Id">Edit</a> |
                         <a href="/deleteproduct/@p.Id">Delete</a>
@@ -44,8 +45,14 @@
     List<ProductsViewModel> productList = new List<ProductsViewModel>();
     protected override async Task OnInitializedAsync()
     {
-        var response = await _httpClient.GetAsync("api/products");
+        var response = await _httpClient.GetAsync("api/products/");
         response.EnsureSuccessStatusCode();
         productList = await response.Content.ReadFromJsonAsync<List<ProductsViewModel>>();
+        
+
     }
+
+
+
+    
 }

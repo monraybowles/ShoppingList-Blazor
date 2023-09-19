@@ -6,7 +6,7 @@
 @inject IJSRuntime JsRuntime
 
 <h2>Add Product</h2>
-<div class="row">
+<div  class="row"  >
     <div class="col-md-6">
         <div class="form-group">
             <label for="ProductName"> ProductName *</label>
@@ -25,16 +25,26 @@
             <input form="Price" class="form-control" @bind="@products.Price" />
         </div>
     </div>
-    <div class="col-md-6">
-         <div class="form-group">
-            <label for="Img"> Image *</label>
-            <input form="Img" class="form-control" @bind="@products.Img" />
-        </div>
-       @* <div class="form-group">
+
+      <div class="col-md-6">
+        
+        <div class="form-group">
            <label for="Upload Image"> Upload Image *</label>
-            <InputFile  class="form-control" />     
-        </div>*@
-   </div>
+            <InputFile  class="form-control" id="img"   OnChange="@OnInputFileChange" />     
+        </div>
+      </div>
+     <div class="row mb-6">
+         
+             <div class="form-group">
+             
+             <label for="img" ></label>
+               
+               @* <div>
+                    <img src="@products.Img" height="200px" width="200px">
+                </div>*@
+              
+            </div>
+        </div>
 </div>
 <div class="row">
     <div class="col-md-4">
@@ -44,15 +54,19 @@
         </div>
     </div>
 </div>
-@code {
+@code
+{
     ProductsViewModel products = new ProductsViewModel();
+    byte[] _fileBytes = null;
+    byte[] buffers = null;
+
     protected override async Task OnInitializedAsync()
     {
 
     }
     protected async Task Save()
     {
-
+         products.Img = buffers;
 
         var response = await Http.PostAsJsonAsync("api/Products/", @products);
         ProductsViewModel productResponse = await response.Content.ReadFromJsonAsync<ProductsViewModel>();
@@ -68,7 +82,93 @@
         NavigationManager.NavigateTo("productlist");
     }
 
-                
+
+    string imgSrc = "";
+
+
+
+   // private readonly IWebHostEnviroment environment;
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        IBrowserFile imgFile = e.File;
+
+       // string root = @"wwwroot\Images";
+       // string folder = "Images";
+       // Guid id = new Guid();
+
+
+       // string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot");
+
+       //// var path = $"{Directory.GetCurrentDirectory()}{@"wwwroot\Images"}";//Path.Combine(root, folder, imgFile.Name);
+       // //var path = Path.Combine(root, folder, imgFile.Name);
+       // using var fileSream = new FileStream(path, FileMode.Create);
+
+       //// await file
+        
+       // // var memoryStream = new MemoryStream();
+
+       // await imgFile.OpenReadStream().CopyToAsync(fileSream);
+
+       // //using (FileStream fileStream = new FileStream(path,FileMode.Create,FileAccess.Write))
+       // //{
+       // //    memoryStream.WriteTo(fileStream);
+       // //}
+
+        buffers = new byte[imgFile.Size];
+        await imgFile.OpenReadStream().ReadAsync(buffers);
+        string imageType = imgFile.ContentType;
+        string fileName = imgFile.Name;
+        products.Img = buffers;//$"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+
+    }
+
+
+    //async void HandleFileSelection(InputFileChangeEventArgs eventArgs)
+    //{
+
+
+    //    foreach (var file in eventArgs.GetMultipleFiles(1))
+    //    {
+    //        try
+    //        {
+
+
+
+    //            using (var ms = new MemoryStream())
+    //            {
+
+    //                await file.OpenReadStream().CopyToAsync(ms);
+    //                _fileBytes = ms.ToArray();
+
+    //                products.Img = _fileBytes;
+
+    //            }
+
+
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            ex.ToString();
+    //        }
+    //    }
+    //}
+    public byte[] getImage(string sBase64String)     
+     {
+            byte[] bytes = null;
+            if(!string.IsNullOrEmpty(sBase64String))
+            {
+                bytes = Convert.FromBase64String(sBase64String);
+            }
+            return bytes;
+     }
+      
+        
+       
+   
+
+
+    
 
 
 }

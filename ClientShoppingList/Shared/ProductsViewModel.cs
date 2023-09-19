@@ -24,6 +24,7 @@ namespace ClientShoppingList.Shared
         public decimal Price { get; set; }
 
       
-        public string Img { get; set; }
+        public byte[] Img { get; set; }
+
     }   
 }
