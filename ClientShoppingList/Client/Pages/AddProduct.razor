@@ -59,7 +59,7 @@
         if (productResponse?.Id > 0)
         {
             await JsRuntime.InvokeVoidAsync("alert", "Saved Successfully!");
-            NavigationManager.NavigateTo("personlist");
+            NavigationManager.NavigateTo("productlist");
         }
 
     }
