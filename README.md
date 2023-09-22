@@ -12,5 +12,9 @@ Check signed on State - Form Security
 
 CRUD Operations 
 
-![Screenshot 2023-09-18 142709-logged-in](https://github.com/monraybowles/ShoppingList-Razor/assets/20695653/f3e22ded-6694-46c3-aec0-b7f707637dba)
-![Screenshot 2023-09-18 142553- logged-in](https://github.com/monraybowles/ShoppingList-Razor/assets/20695653/7d0989da-2d60-4db1-9545-5de732245644)
+![image](https://github.com/monraybowles/ShoppingList-Blazor/assets/20695653/ec0ed06b-8f69-4c50-8b9a-9006bc2fa152)
+
+![image](https://github.com/monraybowles/ShoppingList-Blazor/assets/20695653/03bbfa15-58f5-40fd-9ca0-9e28786c6376)
+
+
+![image](https://github.com/monraybowles/ShoppingList-Blazor/assets/20695653/41e96a0e-ae66-4d18-8b1a-6660973f3956)
