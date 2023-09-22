@@ -14,7 +14,13 @@ CRUD Operations
 
 ![image](https://github.com/monraybowles/ShoppingList-Blazor/assets/20695653/ec0ed06b-8f69-4c50-8b9a-9006bc2fa152)
 
+![image](https://github.com/monraybowles/ShoppingList-Blazor/assets/20695653/93d152c3-fb4f-4e82-a460-ca8ef21de41d)
+
+
 ![image](https://github.com/monraybowles/ShoppingList-Blazor/assets/20695653/03bbfa15-58f5-40fd-9ca0-9e28786c6376)
 
 
 ![image](https://github.com/monraybowles/ShoppingList-Blazor/assets/20695653/41e96a0e-ae66-4d18-8b1a-6660973f3956)
+
+
+![image](https://github.com/monraybowles/ShoppingList-Blazor/assets/20695653/7d2d44e7-24aa-43c9-9572-b6b9ce3d32df)
