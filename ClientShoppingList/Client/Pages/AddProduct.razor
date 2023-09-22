@@ -30,7 +30,7 @@
         
         <div class="form-group">
            <label for="Upload Image"> Upload Image *</label>
-            <InputFile  class="form-control" id="img"   OnChange="@OnInputFileChange" />     
+            <InputFile class="form-control" id="img"  OnChange="@OnInputFileChange" />
         </div>
       </div>
      <div class="row mb-6">
@@ -39,9 +39,9 @@
              
              <label for="img" ></label>
                
-               @* <div>
-                    <img src="@products.Img" height="200px" width="200px">
-                </div>*@
+               <div>
+                <img src="@image" height="200px" width="200px">
+                </div>
               
             </div>
         </div>
@@ -59,9 +59,23 @@
     ProductsViewModel products = new ProductsViewModel();
     byte[] _fileBytes = null;
     byte[] buffers = null;
+    string image = "";
 
     protected override async Task OnInitializedAsync()
     {
+
+        if (products.Img == null)
+        {
+
+        }
+        else
+        {
+            string data = Convert.ToBase64String(products.Img);
+            image = string.Format("data:image/jpeg;base64,{0}", data);
+        }
+   
+
+
 
     }
     protected async Task Save()
@@ -120,6 +134,9 @@
         string imageType = imgFile.ContentType;
         string fileName = imgFile.Name;
         products.Img = buffers;//$"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+
+        string data = Convert.ToBase64String(products.Img);
+        image = string.Format("data:image/jpeg;base64,{0}", data);
 
     }
 

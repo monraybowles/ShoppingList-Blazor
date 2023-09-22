@@ -25,10 +25,24 @@
             <input form="Price" class="form-control" @bind="@product.Price" />
         </div>
     </div>
+
     <div class="col-md-6">
+
         <div class="form-group">
-            <label for="mg"> Image *</label>
-            <input form="mg" class="form-control" />
+            <label for="Upload Image"> Upload Image *</label>
+            <InputFile class="form-control" id="img" OnChange="@OnInputFileChange" />
+        </div>
+    </div>
+    <div class="row mb-6">
+
+        <div class="form-group">
+
+            <label for="img"></label>
+
+            <div>
+                <img src="@image" height="200px" width="200px">
+            </div>
+
         </div>
     </div>
 </div>
@@ -43,13 +57,32 @@
 @code {
     [Parameter]
     public string Id{ get; set; }
+    public string image = "";
+    byte[] _fileBytes = null;
+    byte[] buffers = null;
     ProductsViewModel product = new ProductsViewModel();
     protected override async Task OnInitializedAsync()
     {
         product = await Http.GetFromJsonAsync<ProductsViewModel>("api/products/" + Id);
+
+        if (product.Img == null)
+        {
+
+        }
+        else
+        {
+            string data = Convert.ToBase64String(product.Img);
+            image = string.Format("data:image/jpeg;base64,{0}", data);
+        }
+
     }
     protected async Task Save()
     {
+        if (buffers != null)
+        {
+            product.Img = buffers;
+        }      
+
         var response = await Http.PutAsJsonAsync("api/products/" + Id, @product);
         bool personResponse = await response.Content.ReadFromJsonAsync<bool>();
         if (personResponse)
@@ -62,6 +95,32 @@
     void Cancel()
     {
         NavigationManager.NavigateTo("productlist");
+    }
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        IBrowserFile imgFile = e.File;
+
+
+        buffers = new byte[imgFile.Size];
+        await imgFile.OpenReadStream().ReadAsync(buffers);
+        string imageType = imgFile.ContentType;
+        string fileName = imgFile.Name;
+        product.Img = buffers;//$"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+
+        string data = Convert.ToBase64String(product.Img);
+        image = string.Format("data:image/jpeg;base64,{0}", data);
+
+    }
+
+    public byte[] getImage(string sBase64String)
+    {
+        byte[] bytes = null;
+        if (!string.IsNullOrEmpty(sBase64String))
+        {
+            bytes = Convert.FromBase64String(sBase64String);
+        }
+        return bytes;
     }
 
 }

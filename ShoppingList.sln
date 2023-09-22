@@ -21,9 +21,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlTableAndDataScript", "SqlTableAndDataScript", "{238F3A8A-099D-436C-B81E-517C3532805A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LocalDB", "LocalDB", "{EBEEFA9C-3CEF-4D4D-911D-67662C84267C}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\monray\TaxCalculator.bak = C:\Users\monray\TaxCalculator.bak
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientShoppingList.Server", "ClientShoppingList\Server\ClientShoppingList.Server.csproj", "{6149FDEA-FBF1-4BA0-9E99-23FD4D3709FB}"
 	ProjectSection(ProjectDependencies) = postProject
