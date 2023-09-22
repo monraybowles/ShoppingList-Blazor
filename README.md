@@ -21,3 +21,6 @@ CRUD Operations
 
 
 ![image](https://github.com/monraybowles/ShoppingList-Blazor/assets/20695653/41e96a0e-ae66-4d18-8b1a-6660973f3956)
+
+
+![image](https://github.com/monraybowles/ShoppingList-Blazor/assets/20695653/7d2d44e7-24aa-43c9-9572-b6b9ce3d32df)
