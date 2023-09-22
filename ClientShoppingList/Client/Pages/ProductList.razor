@@ -18,7 +18,7 @@
                     <th width = "30%">Product Name</th>
                     <th width = "20%">Description</th>
                     <th width = "20%">Price</th>
-                    
+                    <th width="20%">Images</th>
                     <th width = "10%">Action</th>
                 </tr>
             </thead>
@@ -31,12 +31,12 @@
                         </td>
                     <td>@p.Description</td>
                     <td>@p.Price</td>
-
+                        <td><img src="@(p.Img!= null ? getImage(p.Img) : "img/no-camera-sign.jpg")" alt="" width="75"></td>
 
                         <td style="text-align:center">
                             <a href="/editproduct/@p.Id" class="btn btn-primary">Edit</a> 
                             <a href="/deleteproduct/@p.Id" class="btn btn-secondary">Delete</a>
-                    </td>
+                       </td>
                     </tr>
                 }
             </tbody>
@@ -44,16 +44,32 @@
     }
 </div>
 @code {
+
+    public string image = "";
     List<ProductsViewModel> productList = new List<ProductsViewModel>();
     protected override async Task OnInitializedAsync()
     {
+
         var response = await _httpClient.GetAsync("api/products/");
+
+
+
         response.EnsureSuccessStatusCode();
         productList = await response.Content.ReadFromJsonAsync<List<ProductsViewModel>>();
-        
+
+
+
+
+
 
     }
 
+    public string getImage(byte[] img)
+    {
+        string data = Convert.ToBase64String(img);
+        image = string.Format("data:image/jpeg;base64,{0}", data);
+        return image;
+    }
 
 
     
