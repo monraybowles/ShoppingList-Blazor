@@ -7,17 +7,19 @@
 
 <h1>Product Detail</h1>
 <div>
-    <a href="/addproduct"> Create New Product</a>
+    <a href="/addproduct" class="btn btn-primary"> Create New Product</a>
+    <br/>
+    <br />
     @if (productList != null)
     {
-        <table class="table-bordered">
-            <thead>
+        <table class="table">
+            <thead class="card-header">
                 <tr>
                     <th width = "30%">Product Name</th>
                     <th width = "20%">Description</th>
                     <th width = "20%">Price</th>
                     
-                    <th width = "30%">Action</th>
+                    <th width = "10%">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,11 +31,11 @@
                         </td>
                     <td>@p.Description</td>
                     <td>@p.Price</td>
-                 
 
-                    <td>
-                        <a href="/editproduct/@p.Id">Edit</a> |
-                        <a href="/deleteproduct/@p.Id">Delete</a>
+
+                        <td style="text-align:center">
+                            <a href="/editproduct/@p.Id" class="btn btn-primary">Edit</a> 
+                            <a href="/deleteproduct/@p.Id" class="btn btn-secondary">Delete</a>
                     </td>
                     </tr>
                 }

@@ -21,15 +21,17 @@ namespace ClientShoppingList.Server.Services
 
             if (data != null)
             {  
+
                 data.ProductName = product.ProductName;
                 data.Description = product.Description;
                 data.Price = product.Price;
                 data.Img = product.Img;
-
                 await _product.UpdateAsync(data);
                 return true;
+
             }
             else
+
                 return false;
         }
 
